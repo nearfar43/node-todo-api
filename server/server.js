@@ -1,3 +1,5 @@
+require('./config/config.js');
+
 //js library
 const express = require('express');
 const bodyParser = require('body-parser');
