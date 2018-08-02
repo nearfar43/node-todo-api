@@ -85,12 +85,13 @@ app.patch('/todos/:id', (req, res) => {
 		body.completedAt = null;
 	}
 
-	Todo.findByIdAndUpdate(id, {$set: body}, {new: true}).then((doc) => {
+	Todo.findByIdAndUpdate(id, {$set: body}, {new: true}).then((todo) => {
 		
-		if(!doc) {
+		if(!todo) {
 			return res.status(404).send();
 		}
-		res.send({doc});
+
+		res.send({todo});
 
 	}).catch((e) => {
 		res.status(400).send();
