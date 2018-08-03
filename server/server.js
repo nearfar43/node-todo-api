@@ -9,7 +9,7 @@ const lodash = require('lodash');
 //local file
 var {mongoose} = require('./db/mongoose.js');
 var {Todo} = require('./models/todo.js');
-var {User2} = require('./models/user.js');
+var {User} = require('./models/user.js');
 
 var app = express();
 const port = process.env.PORT || 3000;
@@ -99,6 +99,24 @@ app.patch('/todos/:id', (req, res) => {
 		res.status(400).send();
 	});
 
+});
+
+
+//POST /users
+
+app.post('/users', (req, res, next) => {
+	var body = lodash.pick(req.body, ['email', 'password']);
+	var user = new User(body);
+    
+
+	user.save().then(() => {
+		return user.generateAuthToken(); 
+	}).then((token) => {
+		//custom hearder starts with 'x-'
+		res.header('x-auth', token).send(user);
+	}).catch((e) => {
+		res.status(400).send(e);
+	})
 });
 
 app.listen(port, () => {
