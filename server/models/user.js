@@ -83,7 +83,7 @@ userSchema.statics.findByToken = function (token) {
 	});
 };
 
-//validate before save action
+//encrypt user password before saving into mongoDB
 userSchema.pre('save', function(next) {
 	var user = this;
 
