@@ -39,4 +39,4 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
 });
 
 
-//E:\MongoDB\Server\3.6\bin>mongod.exe --dbpath /E:/mongo-data
+//E:\MongoDB\Server\3.6\bin>mongod.exe --dbpath E:/mongo-data
